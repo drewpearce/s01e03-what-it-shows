@@ -1,0 +1,50 @@
+---
+layout: runbook
+title: '#4471 · three problems, not one'
+owner: drewpearce
+status: draft
+reviewed: 2026-11-06
+signature: drewpearce
+---
+
+<script>
+  import SplitTable from '#lib/kb/SplitTable.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+  const issues = {
+    parser: 'https://github.com/drewpearce/s01e03-what-it-shows/issues/1',
+    hint: 'https://github.com/drewpearce/s01e03-what-it-shows/issues/2',
+    'one-day shift': 'https://github.com/drewpearce/s01e03-what-it-shows/issues/3',
+  };
+</script>
+
+[#4471](/kb/incidents/4471) is marked known: one bug, one fix queued. The reports merged into it
+describe three bugs. The queued parser fix closes only the first.
+
+<Callout kind="warn">
+Fixing the parser leaves the booking-v3 hint and the one-day shifts open.
+</Callout>
+
+## The problems
+
+<SplitTable ticket={4471} {issues} />
+
+- **`parser`** — the shared parser reads dates month first; day-first tenants get day and month swapped.
+- **`hint`** — booking-v3 prints `MM/DD/YYYY` under its date field. People type month first, the form reads day first.
+  Only form reports from day-first tenants on booking-v3.
+- **`one-day shift`** — the date moves by one day, it does not swap. Time zones or daylight saving.
+  The desk already noted these in `desk-notes.json`; the kb counted them under `parser`.
+
+## Why the merge hid them
+
+[Decision 0001](/kb/decisions/0001-dedupe-by-subject) merges on subject alone. A subject says the
+date is wrong, not why: 10 of the 12 subject lines in #4471 appear under both `parser` and `hint`.
+Intake tags did not help either: they are a guess from the reporter's browser, and 38 reports carry
+the wrong one.
+
+## For the desk
+
+- Count by cause (tenant locale, form, channel), not by subject or intake tag.
+- Read the body before merging when the symptom is "one day off": that is not a swap.
+
+<RenderStamp {signature} />
