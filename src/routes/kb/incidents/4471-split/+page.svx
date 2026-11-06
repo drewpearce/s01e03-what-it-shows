@@ -19,10 +19,11 @@ signature: drewpearce
 </script>
 
 [#4471](/kb/incidents/4471) is marked known: one bug, one fix queued. The reports merged into it
-describe three bugs. The queued parser fix closes only the first.
+describe three bugs. Engineering closed #4471 on 5 October: the parser is fixed and booking-v3
+is retired. The one-day shifts are still open.
 
 <Callout kind="warn">
-Fixing the parser leaves the booking-v3 hint and the one-day shifts open.
+#4471 is closed, but the one-day shifts were never part of its fix.
 </Callout>
 
 ## The problems
@@ -34,6 +35,12 @@ Fixing the parser leaves the booking-v3 hint and the one-day shifts open.
   Only form reports from day-first tenants on booking-v3.
 - **`one-day shift`** — the date moves by one day, it does not swap. Time zones or daylight saving.
   The desk already noted these in `desk-notes.json` and files them under `parser` by tenant, so they count in both rows.
+
+## Since 5 October
+
+- **`parser`** — fixed: `fix(dates): parse dd/mm for eu locales`.
+- **`hint`** — won't fix: the booking-v3 form is retired.
+- **`one-day shift`** — open. Not in engineering's update.
 
 ## Why the merge hid them
 

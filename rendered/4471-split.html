@@ -35,8 +35,8 @@ aside.warn { border-color: var(--warn); background: var(--warn-bg); }
 <header><a class="crumb" href="/kb">support desk · kb</a><h1>#4471 · three problems, not one</h1>
 <p class="meta"><span>owner <b>drewpearce</b></span><span class="status draft">draft</span><span>reviewed 2026-11-06 · 0 days ago</span></p></header>
 <main>
-<p><a href="/kb/incidents/4471">#4471</a> is marked known: one bug, one fix queued. The reports merged into it describe three bugs. The queued parser fix closes only the first.</p>
-<aside class="warn">Fixing the parser leaves the booking-v3 hint and the one-day shifts open.</aside>
+<p><a href="/kb/incidents/4471">#4471</a> is marked known: one bug, one fix queued. The reports merged into it describe three bugs. Engineering closed #4471 on 5 October: the parser is fixed and booking-v3 is retired. The one-day shifts are still open.</p>
+<aside class="warn">#4471 is closed, but the one-day shifts were never part of its fix.</aside>
 <h2>The problems</h2>
 <p><strong>412</strong> reports merged into #4471 · <strong>3</strong> problems</p>
 <p class="note">The 5 one-day reports are filed under <code>parser</code> by tenant and counted there too.</p>
@@ -46,6 +46,8 @@ aside.warn { border-color: var(--warn); background: var(--warn-bg); }
 <tr><td><code>one-day shift</code></td><td>5</td><td>5</td><td><a href="https://github.com/drewpearce/s01e03-what-it-shows/issues/3">s01e03-what-it-shows/issues/3</a></td></tr>
 </tbody></table>
 <ul><li><strong><code>parser</code></strong> — the shared parser reads dates month first; day-first tenants get day and month swapped.</li><li><strong><code>hint</code></strong> — booking-v3 prints <code>MM/DD/YYYY</code> under its date field. People type month first, the form reads day first. Only form reports from day-first tenants on booking-v3.</li><li><strong><code>one-day shift</code></strong> — the date moves by one day, it does not swap. Time zones or daylight saving. The desk already noted these in <code>desk-notes.json</code> and files them under <code>parser</code> by tenant, so they count in both rows.</li></ul>
+<h2>Since 5 October</h2>
+<ul><li><strong><code>parser</code></strong> — fixed: <code>fix(dates): parse dd/mm for eu locales</code>.</li><li><strong><code>hint</code></strong> — won't fix: the booking-v3 form is retired.</li><li><strong><code>one-day shift</code></strong> — open. Not in engineering's update.</li></ul>
 <h2>Why the merge hid them</h2>
 <p><a href="/kb/decisions/0001-dedupe-by-subject">Decision 0001</a> merges on subject alone. A subject says the date is wrong, not why: 10 of the 12 subject lines in #4471 appear under both <code>parser</code> and <code>hint</code>. Intake tags did not help either: they are a guess from the reporter's browser, and 38 reports carry the wrong one.</p>
 <h2>For the desk</h2>
