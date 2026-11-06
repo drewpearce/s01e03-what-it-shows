@@ -4,7 +4,7 @@ title: '#4471 · three problems, not one'
 owner: drewpearce
 status: draft
 reviewed: 2026-11-06
-signature: drewpearce
+signature: v1.eyJzdG9yeSI6Im9mZiIsInN1YiI6IjY2MzAiLCJhdWQiOiJjaGFsbGVuZ2U6d2hhdC1pdC1zaG93cyIsImlhdCI6MTc5Mzk4MzE1NywiZXhwIjoxNzk0MDY5NTU3fQ.FEf0b45U-Pijbaq-AsGIrMMKFSnx5BYTCzwz6_0eF1E
 ---
 
 <script>
